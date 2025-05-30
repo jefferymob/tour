@@ -145,17 +145,18 @@
     showSceneList();
   }
 
-  // Set handler for scene switch.
-  scenes.forEach(function(scene) {
-    var el = document.querySelector('#sceneList .scene[data-id="' + scene.data.id + '"]');
-    el.addEventListener('click', function() {
+ document.querySelectorAll('#sceneList .scene').forEach(function(el) {
+  el.addEventListener('click', function() {
+    var id = el.getAttribute('data-id');
+    const scene = findSceneById(id);
+    if (scene) {
       switchScene(scene);
-      // On mobile, hide scene list after selecting a scene.
       if (document.body.classList.contains('mobile')) {
         hideSceneList();
       }
-    });
+    }
   });
+});
 
   // DOM elements for view controls.
   var viewUpElement = document.querySelector('#viewUp');
